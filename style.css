@@ -1,0 +1,392 @@
+/* 1. General page settings */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f6fb;
+    color: #202b3c;
+}
+
+/* 2. Page header */
+.page-header {
+    text-align: center;
+    padding: 28px 16px;
+    background: linear-gradient(135deg, #102a43, #2463a6);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.page-header h1 {
+    font-size: 2.4rem;
+    margin: 0 0 10px;
+}
+
+.page-header p {
+    margin: 0;
+    font-size: 1rem;
+    color: #e0eaf5;
+}
+
+/* 3. Main content */
+.container {
+    width: min(1100px, 92%);
+    margin: 28px auto;
+}
+
+.search-section {
+    background-color: white;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(20, 40, 70, 0.08);
+    margin-bottom: 24px;
+}
+
+#weatherForm label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.search-controls {
+    display: flex;
+    gap: 12px;
+}
+
+#locationInput {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#locationInput:focus {
+    border-color: #2463a6;
+    box-shadow: 0 0 0 3px rgba(36, 99, 166, 0.15);
+}
+
+#searchButton {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 9px;
+    background-color: #2463a6;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#searchButton:hover {
+    background-color: #174a80;
+    transform: translateY(-1px);
+}
+
+#searchButton:focus-visible {
+    outline: 3px solid #8bbcff;
+    outline-offset: 3px;
+}
+
+/* 4. Loading and messages */
+.hidden {
+    display: none !important;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    color: #2463a6;
+}
+
+.spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid #dbeafe;
+    border-top-color: #2463a6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.message {
+    margin-top: 16px;
+    padding: 13px 15px;
+    border-radius: 9px;
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.weather-result {
+    margin-top: 20px;
+}
+
+/* 5. Map */
+.map-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+}
+
+#map {
+    width: 100%;
+    height: 70vh;
+    min-height: 350px;
+    border: 3px solid #24364b;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 6. Footer */
+.page-footer {
+    text-align: center;
+    padding: 20px 12px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* 7. Mobile screens */
+@media (max-width: 600px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .search-section {
+        padding: 18px;
+    }
+
+    .search-controls {
+        flex-direction: column;
+    }
+
+    #searchButton {
+        width: 100%;
+    }
+
+    #map {
+        min-height: 320px;
+    }
+}
+/* 8. Favorite cities */
+.favorites-section {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.favorites-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+}
+
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.favorite-item {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.favorite-city,
+.remove-favorite,
+#addFavoriteButton {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.favorite-city {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.favorite-city:hover {
+    background-color: #bfdbfe;
+}
+
+.remove-favorite {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.remove-favorite:hover {
+    background-color: #fecaca;
+}
+
+#addFavoriteButton {
+    background-color: #2463a6;
+    color: white;
+}
+
+#addFavoriteButton:hover:not(:disabled) {
+    background-color: #174a80;
+}
+
+#addFavoriteButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* 9. Five-day weather forecast */
+.forecast-section {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.forecast-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+
+.forecast-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.forecast-card {
+    padding: 16px 10px;
+    text-align: center;
+    background-color: #f3f6fb;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(20, 40, 70, 0.06);
+}
+
+.forecast-card h3 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+}
+
+.forecast-card p {
+    margin: 8px 0;
+    overflow-wrap: anywhere;
+}
+
+.forecast-card p:first-of-type {
+    color: #2463a6;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+/* 10. AI Weather Assistant */
+.chat-section {
+    margin: 24px 0;
+    padding: 24px;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(20, 40, 70, 0.08);
+}
+
+.chat-section h2 {
+    margin-top: 0;
+    color: #102a43;
+}
+
+.chat-messages {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 16px 0;
+    padding: 14px;
+    background-color: #f3f6fb;
+    border-radius: 10px;
+}
+
+.bot-message,
+.user-message {
+    width: fit-content;
+    max-width: 90%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+.bot-message {
+    background-color: #dbeafe;
+    color: #1e3a5f;
+}
+
+.user-message {
+    margin-left: auto;
+    background-color: #2463a6;
+    color: white;
+}
+
+#chatForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.chat-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#chatInput {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font: inherit;
+}
+
+#chatSendButton {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 9px;
+    background-color: #2463a6;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#chatSendButton:hover {
+    background-color: #174a80;
+}
+
+@media (max-width: 600px) {
+    .chat-section {
+        padding: 18px;
+    }
+
+    .chat-controls {
+        flex-direction: column;
+    }
+
+    #chatSendButton {
+        width: 100%;
+    }
+}
+/* Temporary test for AI Chatbot visibility */
+.chat-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 2;
+    min-height: 200px;
+}
