@@ -3,7 +3,7 @@
 console.log("JavaScript is working");
 console.log("Leaflet status:", typeof L);
 // 1. OpenWeatherMap API key
-const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY"; // Replace with your actual OpenWeatherMap API key
+const API_KEY = "818583bbbd4c206b785fc55b805569ed"; // Replace with your actual OpenWeatherMap API key
 
 // 2. Get HTML elements
 const weatherForm = document.getElementById("weatherForm");
@@ -41,7 +41,7 @@ let currentCity = "";
 const map = L.map("map").setView([15.5007, 32.5599], 6);
 
 L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   {
     attribution: '&copy; OpenStreetMap contributors',
     maxZoom: 19
